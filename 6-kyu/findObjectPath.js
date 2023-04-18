@@ -20,7 +20,11 @@ function findObjectPath(object, path) {
     let fullPath = object;
 
     for (let path of newPath) {
-        fullPath = fullPath?.[path]
+        if (fullPath.hasOwnProperty(path)) {
+            fullPath = fullPath[path]
+        } else {
+            return undefined
+        }
     }
 
     return fullPath

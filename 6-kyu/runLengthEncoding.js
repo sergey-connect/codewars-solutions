@@ -32,7 +32,7 @@ function runLengthEncoding(s) {
         if (s[i + 1] == s[i]) {
             count += 1;
         } else {
-            arr.push(`(${count}, ${s[i]})`);
+            arr.push([count, s[i]]);
             count = 1;
         }
     }

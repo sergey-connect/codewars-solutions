@@ -28,24 +28,28 @@ Your task is to implement a function which accepts a matrix containing
 the numbers 0 and 1. It should return the number of islands as an integer.
 */
 
-function countTheIslands(matrix) {
+function countTheIslands(image) {
     let count = 0;
 
-    function checkNeighbour(matrix, i, j) {
-        matrix[i][j] = 'X';
-        if (matrix[i][j + 1] == 1) { checkNeighbour(matrix, i, j + 1) }
-        if (matrix[i][j - 1] == 1) { checkNeighbour(matrix, i, j - 1) }
-        if (matrix[i + 1]?.[j] == 1) { checkNeighbour(matrix, i + 1, j) }
-        if (matrix[i - 1]?.[j] == 1) { checkNeighbour(matrix, i - 1, j) }
+    function checkNeighbour(image, i, j) {
+        image[i][j] = 'X';
+        if (image[i][j + 1] == 1) { checkNeighbour(image, i, j + 1) }
+        if (image[i][j - 1] == 1) { checkNeighbour(image, i, j - 1) }
+        if (image[i + 1]?.[j] == 1) { checkNeighbour(image, i + 1, j) }
+        if (image[i - 1]?.[j] == 1) { checkNeighbour(image, i - 1, j) }
+        if (image[i - 1]?.[j - 1] == 1) { checkNeighbour(image, i - 1, j - 1) }
+        if (image[i - 1]?.[j + 1] == 1) { checkNeighbour(image, i - 1, j + 1) }
+        if (image[i + 1]?.[j - 1] == 1) { checkNeighbour(image, i + 1, j - 1) }
+        if (image[i + 1]?.[j + 1] == 1) { checkNeighbour(image, i + 1, j + 1) }
     }
 
-    for (let i = 0; i < matrix.length; i++) {
-        let row = matrix[i];
+    for (let i = 0; i < image.length; i++) {
+        let row = image[i];
 
         for (let j = 0; j < row.length; j++) {
-            if (matrix[i][j] == 1) {
+            if (image[i][j] == 1) {
                 count += 1;
-                checkNeighbour(matrix, i, j)
+                checkNeighbour(image, i, j)
             }
         }
     }
@@ -54,12 +58,12 @@ function countTheIslands(matrix) {
 }
 
 let arr = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
-    [0, 0, 1, 1, 0, 0, 0, 1, 0, 1],
-    [0, 0, 1, 1, 0, 0, 0, 0, 1, 0],
-    [0, 0, 1, 0, 0, 0, 0, 0, 1, 0],
-    [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-]
+    [0, 0, 1, 1, 0, 0, 0, 0, 0, 0],
+    [0, 0, 1, 1, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 1, 1, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+];
 
 console.log(countTheIslands(arr))
